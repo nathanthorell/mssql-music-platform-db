@@ -11,7 +11,7 @@ An example database in MSSQL using Flyway for schema migrations
     docker run -d -e ACCEPT_EULA=Y -e MSSQL_SA_PASSWORD=TestPassword01 -v mssqldata:/var/opt/mssql -p 1433:1433 --name azuresqledge mcr.microsoft.com/azure-sql-edge:latest
     ```
 
-- Flyway requires a database before it can connect.  To speed up this process I've added `create_db.zsh` which parses the flyway.conf file and pulls the server connection information to connect and check if the database exists, if so it drops the database then creates a new empty one.
+- Flyway requires a database before it can connect.  To speed up this process for development iteration, I've added `create_db.zsh` which parses the flyway.conf file and pulls the server connection information.  It then connects and checks if the database exists, if so it drops the database then creates a new empty one.
 
 ## CI Migrations
 
