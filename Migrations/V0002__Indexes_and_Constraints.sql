@@ -1,3 +1,8 @@
+ALTER TABLE Subscription
+ADD CONSTRAINT DF_Subscription_CreatedOn DEFAULT (getutcdate()) FOR CreatedOn;
+ALTER TABLE Subscription
+ADD CONSTRAINT DF_Subscription_CreatedBy DEFAULT (suser_name()) FOR CreatedBy;
+
 ALTER TABLE [User]
 ADD CONSTRAINT DF_User_CreatedOn DEFAULT (getutcdate()) FOR CreatedOn;
 ALTER TABLE [User]

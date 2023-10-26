@@ -1,5 +1,15 @@
+-- Sample data for the Subscription table
+INSERT INTO Subscription (Code, [Description])
+VALUES
+('Free', 'Free Plan'),
+('Trial', 'Two Week Trial of Pro Plan'),
+('Pro', 'Professional Plan'),
+('Premium', 'Premium unlimited'),
+('Lifetime', 'Lifetime Premium');
+GO
+
 -- Sample data for the User table
-INSERT INTO [User] (UserName, Email, SubscriptionType, RegistrationDate)
+INSERT INTO [User] (UserName, Email, SubscriptionCode, RegistrationDate)
 VALUES
 ('John Doe', 'john.doe@example.com', 'Premium', '2023-07-01'),
 ('Jane Smith', 'jane.smith@example.com', 'Free', '2023-06-15'),
@@ -62,7 +72,7 @@ VALUES
 GO
 
 -- Sample data for the Playlist table
-INSERT INTO Playlist (Title, Description, UserID)
+INSERT INTO Playlist (Title, [Description], UserID)
 VALUES
 ('Road Trip Playlist', 'Perfect for your next road adventure!', 1),
 ('Chill & Relax', 'Unwind with these soothing tunes.', 2),
