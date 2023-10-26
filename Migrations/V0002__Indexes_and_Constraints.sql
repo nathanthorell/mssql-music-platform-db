@@ -8,6 +8,11 @@ ADD CONSTRAINT DF_User_CreatedOn DEFAULT (getutcdate()) FOR CreatedOn;
 ALTER TABLE [User]
 ADD CONSTRAINT DF_User_CreatedBy DEFAULT (suser_name()) FOR CreatedBy;
 
+ALTER TABLE Payment
+ADD CONSTRAINT DF_Payment_CreatedOn DEFAULT (getutcdate()) FOR CreatedOn;
+ALTER TABLE Payment
+ADD CONSTRAINT DF_Payment_CreatedBy DEFAULT (suser_name()) FOR CreatedBy;
+
 ALTER TABLE Genre
 ADD CONSTRAINT DF_Genre_CreatedOn DEFAULT (getutcdate()) FOR CreatedOn;
 ALTER TABLE Genre
