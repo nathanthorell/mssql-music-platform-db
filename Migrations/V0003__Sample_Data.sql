@@ -18,6 +18,26 @@ VALUES
 ('Alex Lee', 'alex.lee@example.com', 'Premium', '2023-07-05');
 GO
 
+-- Sample data for the Payment table with "Pending" PaymentState
+INSERT INTO [Payment] (UserId, SubscriptionCode, Amount, PaymentState, PostedDate)
+SELECT
+    UserId,
+    SubscriptionCode,
+    CASE
+        WHEN SubscriptionCode = 'Free' THEN 0.00
+        WHEN SubscriptionCode = 'Trial' THEN 0.00
+        WHEN SubscriptionCode = 'Pro' THEN 19.99
+        WHEN SubscriptionCode = 'Premium' THEN 49.99
+        WHEN SubscriptionCode = 'Lifetime' THEN 199.99
+    END AS Amount,
+    CASE
+        WHEN [User].SubscriptionCode IN ('Free', 'Trial') THEN 'None'
+        ELSE 'Pending' -- Default PaymentState for other cases
+    END AS PaymentState,
+    '2023-08-01' AS PostedDate
+FROM [User];
+GO
+
 -- Sample data for the Genre table
 INSERT INTO Genre (GenreName)
 VALUES

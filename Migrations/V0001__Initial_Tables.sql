@@ -16,11 +16,16 @@ CREATE TABLE [User] (
     CreatedOn datetime2(7) NOT NULL,
     UpdatedOn datetime2(7) NULL,
     UpdatedBy nvarchar(100) NULL,
+    SysStartTime datetime2 GENERATED ALWAYS AS ROW START,
+    SysEndTime datetime2 GENERATED ALWAYS AS ROW END,
+    PERIOD FOR SYSTEM_TIME (SysStartTime, SysEndTime),
     CONSTRAINT PK_User PRIMARY KEY CLUSTERED (UserId ASC),
-    CONSTRAINT FK_User_Subscription_SubscriptionCode FOREIGN KEY (SubscriptionCode) REFERENCES Subscription (Code)
+    CONSTRAINT FK_User_Subscription_SubscriptionCode FOREIGN KEY (SubscriptionCode) REFERENCES Subscription (Code)  
+) WITH (
+    SYSTEM_VERSIONING = ON (HISTORY_TABLE = dbo.UserHistory)
 );
 
-CREATE TABLE [Payment] (
+CREATE TABLE Payment (
     PaymentId integer IDENTITY (1, 1) NOT NULL,
     UserId integer NOT NULL,
     SubscriptionCode varchar(10) NOT NULL,
@@ -32,9 +37,14 @@ CREATE TABLE [Payment] (
     CreatedOn datetime2(7) NOT NULL,
     UpdatedOn datetime2(7) NULL,
     UpdatedBy nvarchar(100) NULL,
+    SysStartTime datetime2 GENERATED ALWAYS AS ROW START,
+    SysEndTime datetime2 GENERATED ALWAYS AS ROW END,
+    PERIOD FOR SYSTEM_TIME (SysStartTime, SysEndTime),
     CONSTRAINT PK_Payment PRIMARY KEY CLUSTERED (UserId ASC),
     CONSTRAINT FK_Payment_User_UserId FOREIGN KEY (UserId) REFERENCES [User] (UserId),
     CONSTRAINT FK_Payment_Subscription_SubscriptionCode FOREIGN KEY (SubscriptionCode) REFERENCES Subscription (Code)
+) WITH (
+    SYSTEM_VERSIONING = ON (HISTORY_TABLE = dbo.PaymentHistory)
 );
 
 CREATE TABLE Genre (
