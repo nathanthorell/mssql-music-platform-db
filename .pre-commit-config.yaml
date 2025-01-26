@@ -12,3 +12,4 @@ repos:
     rev: 3.3.0
     hooks:
       - id: sqlfluff-lint
+      - id: sqlfluff-fix

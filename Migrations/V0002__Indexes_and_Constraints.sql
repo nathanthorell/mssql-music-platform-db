@@ -18,7 +18,7 @@ ADD CONSTRAINT DF_Genre_CreatedOn DEFAULT (getutcdate()) FOR CreatedOn;
 ALTER TABLE Genre
 ADD CONSTRAINT DF_Genre_CreatedBy DEFAULT (suser_name()) FOR CreatedBy;
 ALTER TABLE Genre
-ADD CONSTRAINT UQ_Genre_GenreName UNIQUE ([GenreName]);
+ADD CONSTRAINT UQ_Genre_Name UNIQUE ([Name]);
 
 ALTER TABLE Artist
 ADD CONSTRAINT DF_Artist_CreatedOn DEFAULT (getutcdate()) FOR CreatedOn;

@@ -1,6 +1,11 @@
 [flyway]
 environment = "default"
-locations = ["filesystem:./Migrations","filesystem:./Functions","filesystem:./Procedures","filesystem:./Views"]
+locations = [
+    "filesystem:./Migrations",
+    "filesystem:./Functions",
+    "filesystem:./Procedures",
+    "filesystem:./Views"
+]
 encoding = 'ISO-8859-1'
 reportEnabled = false
 sqlMigrationPrefix = 'V'

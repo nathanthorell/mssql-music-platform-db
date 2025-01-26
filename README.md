@@ -2,6 +2,20 @@
 
 An example database in MSSQL using Flyway for schema migrations
 
+## Local Environment Configuration
+
+Example of environment variables:
+
+```bash
+DB_HOST=localhost
+DB_PORT=1433
+DB_NAME=MusicPlatform
+export FLYWAY_URL="jdbc:sqlserver://localhost:1433;databaseName=MusicPlatform;encrypt=false;trustServerCertificate=true"
+export FLYWAY_USER=sa
+export FLYWAY_PASSWORD=YOUR_SECRET_PASSWORD_HERE
+REDGATE_DISABLE_TELEMETRY=true
+```
+
 ## Create Local MSSQL Server and Database
 
 - For local migration testing you will need a local SQL Server DB instance
@@ -11,7 +25,7 @@ An example database in MSSQL using Flyway for schema migrations
     docker run -d -e ACCEPT_EULA=Y -e MSSQL_SA_PASSWORD=TestPassword01 -v mssqldata:/var/opt/mssql -p 1433:1433 --name azuresqledge mcr.microsoft.com/azure-sql-edge:latest
     ```
 
-- Flyway requires a database before it can connect.  To speed up this process for development iteration, I've added `create_db.zsh` which parses the flyway.conf file and pulls the server connection information.  It then connects and checks if the database exists, if so it drops the database then creates a new empty one.
+- Flyway requires a database before it can connect.  To speed up this process for development iteration, I've added `create_db.zsh` which connects and checks if the database exists, if so it drops the database then creates a new empty one.
 
 ## CI Migrations
 
@@ -20,7 +34,7 @@ Migrations are structured for use with FlywayDB
 - For local testing, you will need FlywayDB Community Edition installed
   - [Download FlywayDB](https://flywaydb.org/download/community)
 
-- For local migration testing edit the `flyway.conf` file in this project's root directory with your local connection configuration.
+- For local migration testing edit a local `.env` file in this project's root directory with your local connection configuration and then source it.
 
 - Then run `flyway migrate`
 

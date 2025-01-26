@@ -9,7 +9,7 @@ VALUES
 GO
 
 -- Sample data for the User table
-INSERT INTO [User] (UserName, Email, SubscriptionCode, RegistrationDate)
+INSERT INTO [User] ([Name], Email, SubscriptionCode, RegistrationDate)
 VALUES
 ('John Doe', 'john.doe@example.com', 'Premium', '2023-07-01'),
 ('Jane Smith', 'jane.smith@example.com', 'Free', '2023-06-15'),
@@ -21,7 +21,7 @@ GO
 -- Sample data for the Payment table with "Pending" PaymentState
 INSERT INTO [Payment] (UserId, SubscriptionCode, Amount, PaymentState, PostedDate)
 SELECT
-    UserId,
+    Id AS UserId,
     SubscriptionCode,
     CASE
         WHEN SubscriptionCode = 'Free' THEN 0.00
@@ -39,7 +39,7 @@ FROM [User];
 GO
 
 -- Sample data for the Genre table
-INSERT INTO Genre (GenreName)
+INSERT INTO Genre ([Name])
 VALUES
 ('Rock'),
 ('Pop'),
@@ -49,7 +49,7 @@ VALUES
 GO
 
 -- Sample data for the Artist table
-INSERT INTO Artist (ArtistName, Biography, GenreId, FormationDate)
+INSERT INTO Artist ([Name], Biography, GenreId, FormationDate)
 VALUES
 ('The Beatles', 'The Beatles were an English rock band formed in Liverpool in 1960.', 1, '1960-03-01'),
 ('Taylor Swift', 'Taylor Swift is an American singer-songwriter.', 2, '2006-10-24'),
@@ -92,7 +92,7 @@ VALUES
 GO
 
 -- Sample data for the Playlist table
-INSERT INTO Playlist (Title, [Description], UserID)
+INSERT INTO Playlist (Title, [Description], UserId)
 VALUES
 ('Road Trip Playlist', 'Perfect for your next road adventure!', 1),
 ('Chill & Relax', 'Unwind with these soothing tunes.', 2),
@@ -102,7 +102,7 @@ VALUES
 GO
 
 -- Sample data for the UserPlaylist table
-INSERT INTO UserPlaylist (UserID, PlaylistID)
+INSERT INTO UserPlaylist (UserId, PlaylistId)
 VALUES
 (1, 1),
 (2, 2),
@@ -112,7 +112,7 @@ VALUES
 GO
 
 -- Additional sample data for the AlbumSong table
-INSERT INTO AlbumSong (AlbumID, SongID)
+INSERT INTO AlbumSong (AlbumId, SongId)
 VALUES
 (1, 1),
 (1, 2),
@@ -135,7 +135,7 @@ VALUES
 GO
 
 -- Sample data for the SongGenre table
-INSERT INTO SongGenre (SongID, GenreID)
+INSERT INTO SongGenre (SongId, GenreId)
 VALUES
 (1, 1),
 (2, 2),
@@ -145,7 +145,7 @@ VALUES
 GO
 
 -- Sample data for the AlbumGenre table
-INSERT INTO AlbumGenre (AlbumID, GenreID)
+INSERT INTO AlbumGenre (AlbumId, GenreId)
 VALUES
 (1, 1),
 (2, 2),
